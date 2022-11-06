@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Flex, Image, Link } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Link } from '@chakra-ui/react';
 import logo from '../assets/logo.svg';
 
 const Navbar = () => {
@@ -20,32 +20,34 @@ const Navbar = () => {
   };
 
   return (
-    <Flex
-      justify="space-between"
-      align="center"
-      maxW={1200}
-      margin="0 auto"
-      padding="24px"
-    >
-      <Link href="https://reskillamericans.org/" isExternal>
-        <Image src={logo} alt="" h={30} />
-      </Link>
-      <Flex align="center">
-        <NavLinks
-          links={[
-            { text: 'Learn More', url: '/learn-more' },
-            { text: 'Partner', url: '/partner' },
-            { text: 'Donate', url: '/donate' },
-            { text: 'About Us', url: '/about-us' },
-            { text: 'News', url: '/news' },
-            { text: 'FAQs', url: '/faqs' },
-          ]}
-        />
-        <Button colorScheme="red" color="white">
-          Enroll
-        </Button>
+    <Box w="full">
+      <Flex
+        justify="space-between"
+        align="center"
+        maxW={1200}
+        margin="0 auto"
+        padding="24px"
+      >
+        <Link href="https://reskillamericans.org/" isExternal>
+          <Image src={logo} alt="" h={30} />
+        </Link>
+        <Flex align="center">
+          <NavLinks
+            links={[
+              { text: 'Learn More', url: '/learn-more' },
+              { text: 'Partner', url: '/partner' },
+              { text: 'Donate', url: '/donate' },
+              { text: 'About Us', url: '/about-us' },
+              { text: 'News', url: '/news' },
+              { text: 'FAQs', url: '/faqs' },
+            ]}
+          />
+          <Button bg="red.500" colorScheme="red" color="white">
+            Enroll
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   );
 };
 
