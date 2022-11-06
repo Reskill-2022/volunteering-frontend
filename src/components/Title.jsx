@@ -6,7 +6,7 @@ const Title = () => {
     <Flex justify="center" align="center" bg="brand" padding={16}>
       <Heading color="white" size="2xl">
         Reskill Americans Volunteer Application
-      </Heading>{' '}
+      </Heading>
     </Flex>
   );
 };
