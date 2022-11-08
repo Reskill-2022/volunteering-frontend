@@ -1,0 +1,16 @@
+export const listOfHelpSubjects = [
+  { desc: 'HTML/CSS', value: 'html-css' },
+  { desc: 'JavaScript', value: 'javascript' },
+  { desc: 'TypeScript', value: 'typecript' },
+  { desc: 'UI/UX and Design', value: 'design' },
+  { desc: 'Basic programming concepts', value: 'programming' },
+  { desc: 'Algorithms and Data Structures', value: 'algorithm' },
+  { desc: 'Use of Command Line (Terminal)', value: 'command-line' },
+  { desc: 'Git and GitHub', value: 'git' },
+  { desc: 'VSCode', value: 'vscode' },
+  { desc: 'Figma', value: 'figma' },
+  { desc: 'Node.js (server-side JavaScript)', value: 'node' },
+  { desc: 'Cloud (AWS,Google or Azure)', value: 'cloud' },
+  { desc: 'General Career Advice', value: 'career' },
+  { desc: 'Other:', value: 'other' },
+];
