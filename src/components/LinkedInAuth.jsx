@@ -69,7 +69,6 @@ const LinkedInAuth = () => {
     })
       .then(response => response.json())
       .then(data => {
-        // alert('Sent successfully!');
         // setLoading(false);
         console.log('codes sent', data);
 
@@ -123,8 +122,8 @@ const LinkedInAuth = () => {
           </Heading>
           <Flex justify="space-between" align="flex-end">
             <Box pl={3}>
-              {/* <Text>Name: {username}</Text>
-              <Text>Email: {emailAddress}</Text> */}
+              <Text>Name: </Text>
+              <Text>Email: </Text>
             </Box>
             <Text color="red">Sign out</Text>
           </Flex>
