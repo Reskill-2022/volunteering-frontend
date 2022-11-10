@@ -103,7 +103,8 @@ const LinkedInAuth = () => {
           <Heading size="md">Sign In to Reskill Americans</Heading>
           <Link
             // href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.REACT_APP_LINKEDIN_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&state=${process.env.REACT_APP_LINKEDIN_AUTH_STATE}&scope=r_liteprofile&r_emailaddress&w_member_social`}
-            href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.REACT_APP_LINKEDIN_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&state=${process.env.REACT_APP_LINKEDIN_AUTH_STATE}&scope=r_liteprofile&r_emailaddress`}
+            // href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.REACT_APP_LINKEDIN_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&state=${process.env.REACT_APP_LINKEDIN_AUTH_STATE}&scope=r_liteprofile&r_emailaddress`}
+            href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${process.env.REACT_APP_LINKEDIN_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=r_emailaddress,r_liteprofile`}
           >
             <Image src={linkedInSinIn} alt="" h={10} w={216} my={3} />
           </Link>
