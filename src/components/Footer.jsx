@@ -56,13 +56,15 @@ const Footer = () => {
   return (
     <Box w="full" bg="#151c2b" color="white">
       <Flex
+        flexDir={['column', null, 'row']}
         justify="space-between"
-        align="center"
+        align={['flex-start', null, 'center']}
         maxW={1200}
         margin="0 auto"
-        padding="64px 24px"
+        px={[6, 8]}
+        py={[12, 16]}
       >
-        <Box>
+        <Box mb={[10, null, 0]}>
           <Link href="https://reskillamericans.org/" isExternal>
             <Image src={logo} alt="" h={50} />
           </Link>

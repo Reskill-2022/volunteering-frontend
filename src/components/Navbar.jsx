@@ -86,9 +86,6 @@ const Navbar = () => {
             { text: 'FAQs', url: '/faqs' },
           ]}
         />
-        <Button bg="red.500" colorScheme="red" color="white">
-          Enroll
-        </Button>
       </Flex>
       <Flex display={['flex', null, 'none']} flexDir="column" pos="relative">
         <Flex justify="center" align="center" padding={1.5} onClick={onToggle}>
