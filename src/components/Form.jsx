@@ -17,14 +17,13 @@ import {
   RadioGroup,
   Radio,
   VStack,
-  Textarea,
 } from '@chakra-ui/react';
 import { listOfUsStates } from '../data/us_states';
 import { listOfHelpSubjects } from '../data/help_subjects';
 import { listOfVolunteerMethods } from '../data/volunteer_methods';
 import { listOfMinorityGroups } from '../data/minority_groups';
 
-const Form = () => {
+const Form = ({ linkedInAuth }) => {
   // question 1 (input type = select)
   const [residentState, setResidentState] = useState('');
 
@@ -43,41 +42,49 @@ const Form = () => {
   const [otherVolunteerMethod, setOtherVolunteerMethod] = useState('');
 
   // question 6 (input type = text)
-  const [personInfo, setPersonInfo] = useState('');
+  // const [willJoinDirectory, setWillJoinDirectory] = useState(false);
 
   // question 7 (input type = radio)
   const [minorityGroup, setMinorityGroup] = useState('');
   const [otherMinorityGroup, setOtherMinorityGroup] = useState('');
 
   // question 8 (input type = text)
+  // const [personInfo, setPersonInfo] = useState('');
+
+  // question 9 (input type = radio)
+  const [convicted, setConvicted] = useState(false);
+
+  // question 9 (input type = text)
   const [volunteerName, setVolunteerName] = useState('');
 
   const [loading, setLoading] = useState(false);
 
-  const handleCheckboxSelection = (e, state, setter) => {
+  const handleCheckboxSelection = (e, state, setter, otherValue) => {
     // TODO ensure checkbox selection
 
     const isChecked = e.target.checked;
     const selected = e.target.value;
+    console.log('selected', selected);
+
+    const selectedItems = [...state];
 
     if (isChecked) {
-      const selectedSubjects = [...state];
-      selectedSubjects.push(selected);
-      // console.log('selectedSubjects', selectedSubjects);
-      setter(selectedSubjects);
+      if (selected.toLowerCase() !== 'other' && selected !== 'Other:') {
+        selectedItems.push(selected);
+        setter(selectedItems);
+      }
     } else {
-      const selectedSubjects = [...state];
-      const index = selectedSubjects.indexOf(selected);
-      // console.log('index', index);
+      const selectedItems = [...state];
+      const index = selectedItems.indexOf(selected);
       if (index > -1) {
-        selectedSubjects.splice(index, 1);
-        setter(selectedSubjects);
+        selectedItems.splice(index, 1);
+        setter(selectedItems);
       }
     }
   };
 
   const submitVolunteerData = data => {
-    fetch('/', {
+    fetch('https://api.reskillamericans.org/volunteering/users/update', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -97,23 +104,39 @@ const Form = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    // addOtherValueToList(otherHelpSubject, helpSubjects, setHelpSubjects);
+    // addOtherValueToList(
+    //   otherVolunteerMethod,
+    //   volunteerMethods,
+    //   setVolunteerMethods
+    // );
+
     const formData = {
-      'state-of-residence': residentState,
-      organisation: org,
-      experience: workExperience,
-      volunteer: {
-        subject: {
-          'selected-subjects': helpSubjects,
-          other: otherHelpSubject,
-        },
-        method: {
-          'selected-methods': volunteerMethods,
-          other: otherVolunteerMethod,
-        },
-      },
-      'volunteer-info': personInfo,
-      'minority-group': minorityGroup,
-      'volunteer-name': volunteerName,
+      state: residentState,
+      organization: org,
+      years_of_experience: workExperience,
+      volunteer_means: [...volunteerMethods, otherVolunteerMethod],
+      volunteer_areas: [...helpSubjects, otherHelpSubject],
+      representation: minorityGroup,
+      convicted: convicted,
+      provided_name: volunteerName,
+
+      // will_join_directory: willJoinDirectory,
+      // self_summary: personInfo,
+
+      // volunteer: {
+      //   subject: {
+      //     'selected-subjects': helpSubjects,
+      //     other: otherHelpSubject,
+      //   },
+      //   method: {
+      //     'selected-methods': volunteerMethods,
+      //     other: otherVolunteerMethod,
+      //   },
+      // },
+      // 'volunteer-info': personInfo,
+      // 'minority-group': minorityGroup,
+      // 'volunteer-name': volunteerName,
     };
 
     console.log('formData', formData);
@@ -188,6 +211,7 @@ const Form = () => {
                     <Input
                       type="text"
                       placeholder="example organisation"
+                      _placeholder={{ opacity: 0.5, color: 'gray.600' }}
                       value={org}
                       onChange={e => setOrg(e.target.value)}
                       border="1px solid"
@@ -211,10 +235,18 @@ const Form = () => {
                       value={workExperience}
                     >
                       <VStack align="flex-start">
-                        <Radio value="0">0</Radio>
-                        <Radio value="1-3">1 - 3</Radio>
-                        <Radio value="4-9">4 - 9</Radio>
-                        <Radio value="10-above">10 or more</Radio>
+                        <Radio value="0" borderColor="gray.200">
+                          0
+                        </Radio>
+                        <Radio value="1-3" borderColor="gray.200">
+                          1 - 3
+                        </Radio>
+                        <Radio value="4-9" borderColor="gray.200">
+                          4 - 9
+                        </Radio>
+                        <Radio value="10-above" borderColor="gray.200">
+                          10 or more
+                        </Radio>
                       </VStack>
                     </RadioGroup>
                   </FormControl>
@@ -224,27 +256,28 @@ const Form = () => {
                 <ListItem>
                   <FormControl mb={4}>
                     <Text fontWeight={500}>
-                      In what specific areas would you like to help
-                      participants?
+                      In what specific areas would you like to volunteer?
                     </Text>
                     <FormHelperText color="black" fontStyle="italic">
                       Select all that apply.
                     </FormHelperText>
                     <VStack align="flex-start" my={3}>
-                      {listOfHelpSubjects.map(({ desc, value }) => {
+                      {listOfVolunteerMethods.map(({ title, desc }) => {
                         return (
                           <Checkbox
-                            key={value}
-                            value={value}
+                            key={title}
+                            value={title}
+                            borderColor="gray.200"
                             onChange={e =>
                               handleCheckboxSelection(
                                 e,
-                                helpSubjects,
-                                setHelpSubjects
+                                volunteerMethods,
+                                setVolunteerMethods,
+                                otherVolunteerMethod
                               )
                             }
                           >
-                            {desc}
+                            <strong>{title}:</strong> {desc}.
                           </Checkbox>
                         );
                       })}
@@ -260,7 +293,7 @@ const Form = () => {
                 </ListItem>
 
                 {/* QUESTION 5 */}
-                <ListItem>
+                {/* <ListItem>
                   <FormControl mb={4}>
                     <Text fontWeight={500}>
                       In which ways would you be available to volunteer?
@@ -274,12 +307,55 @@ const Form = () => {
                         return (
                           <Checkbox
                             key={value}
-                            value={value}
+                            value={desc}
                             onChange={e =>
                               handleCheckboxSelection(
                                 e,
                                 volunteerMethods,
-                                setVolunteerMethods
+                                setVolunteerMethods,
+                                otherVolunteerMethod
+                              )
+                            }
+                          >
+                            {desc}
+                          </Checkbox>
+                        );
+                      })}
+                    </VStack>
+                    <Input
+                      type="text"
+                      value={otherVolunteerMethod}
+                      onChange={e => setOtherVolunteerMethod(e.target.value)}
+                      border="1px solid"
+                      borderColor="blackAlpha.300"
+                    />
+                  </FormControl>
+                </ListItem> */}
+
+                {/* QUESTION 5 */}
+                <ListItem>
+                  <FormControl mb={4}>
+                    <Text fontWeight={500}>
+                      If you selected mentorship, in what specific areas would
+                      you be able to help with skills?{' '}
+                    </Text>
+                    <FormHelperText color="black" fontStyle="italic">
+                      Select all that apply.
+                    </FormHelperText>
+
+                    <VStack align="flex-start" my={3}>
+                      {listOfHelpSubjects.map(({ desc, value }) => {
+                        return (
+                          <Checkbox
+                            key={value}
+                            value={desc}
+                            borderColor="gray.200"
+                            onChange={e =>
+                              handleCheckboxSelection(
+                                e,
+                                helpSubjects,
+                                setHelpSubjects,
+                                otherHelpSubject
                               )
                             }
                           >
@@ -299,21 +375,23 @@ const Form = () => {
                 </ListItem>
 
                 {/* QUESTION 6 */}
-                <ListItem>
+                {/* <ListItem>
                   <FormControl isRequired mb={4}>
                     <FormLabel>
                       Are you willing to be identified in our volunteer
                       directory (distributed to participants)?
                     </FormLabel>
-                    <Textarea
-                      value={personInfo}
-                      onChange={e => setPersonInfo(e.target.value)}
-                      placeholder="Please tell us about yourself..."
-                      border="1px solid"
-                      borderColor="blackAlpha.300"
-                    />
+                    <RadioGroup
+                      onChange={setWillJoinDirectory}
+                      value={willJoinDirectory}
+                    >
+                      <VStack align="flex-start">
+                        <Radio value="true">Yes</Radio>
+                        <Radio value="false">No</Radio>
+                      </VStack>
+                    </RadioGroup>
                   </FormControl>
-                </ListItem>
+                </ListItem> */}
 
                 {/* QUESTION 7 */}
                 <ListItem>
@@ -329,7 +407,11 @@ const Form = () => {
                       <VStack align="flex-start">
                         {listOfMinorityGroups.map(({ name, value }) => {
                           return (
-                            <Radio value={value} key={value}>
+                            <Radio
+                              value={value}
+                              key={value}
+                              borderColor="gray.200"
+                            >
                               {name}
                             </Radio>
                           );
@@ -360,6 +442,40 @@ const Form = () => {
                 </ListItem>
 
                 {/* QUESTION 8 */}
+                {/* <ListItem>
+                  <FormControl isRequired mb={4}>
+                    <FormLabel>Please tell us about yourself</FormLabel>
+                    <Textarea
+                      value={personInfo}
+                      onChange={e => setPersonInfo(e.target.value)}
+                      placeholder="Something about you"
+                      border="1px solid"
+                      borderColor="blackAlpha.300"
+                    />
+                  </FormControl>
+                </ListItem> */}
+
+                {/* QUESTION 3 */}
+                <ListItem>
+                  <FormControl isRequired mb={4}>
+                    <FormLabel>
+                      Have you ever been convicted of any criminal offense other
+                      than minor traffic violations?
+                    </FormLabel>
+                    <RadioGroup onChange={setConvicted} value={convicted}>
+                      <VStack align="flex-start">
+                        <Radio value="true" borderColor="gray.200">
+                          Yes
+                        </Radio>
+                        <Radio value="false" borderColor="gray.200">
+                          No
+                        </Radio>
+                      </VStack>
+                    </RadioGroup>
+                  </FormControl>
+                </ListItem>
+
+                {/* QUESTION 9 */}
                 <ListItem>
                   <FormControl isRequired mb={4}>
                     <FormLabel>
@@ -383,7 +499,7 @@ const Form = () => {
               </OrderedList>
 
               <Button
-                // disabled={!hasReadTos}
+                disabled={!linkedInAuth}
                 colorScheme="blue"
                 my={4}
                 mt={6}

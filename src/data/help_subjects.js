@@ -10,7 +10,7 @@ export const listOfHelpSubjects = [
   { desc: 'VSCode', value: 'vscode' },
   { desc: 'Figma', value: 'figma' },
   { desc: 'Node.js (server-side JavaScript)', value: 'node' },
-  { desc: 'Cloud (AWS,Google or Azure)', value: 'cloud' },
+  { desc: 'Cloud (AWS, GCP or Azure)', value: 'cloud' },
   { desc: 'General Career Advice', value: 'career' },
   { desc: 'Other:', value: 'other' },
 ];

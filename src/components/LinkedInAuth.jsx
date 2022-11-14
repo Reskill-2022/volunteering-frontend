@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 
 import linkedInSinIn from '../assets/signin-linkedin.png';
 
-const LinkedInAuth = () => {
+const LinkedInAuth = ({ setLinkedInAuth }) => {
   const [authCode, setAuthCode] = useState('');
   const [queryState, setQueryState] = useState('');
   const [username, setUsername] = useState('John Doe');
@@ -20,6 +20,35 @@ const LinkedInAuth = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const sendAuthorisationCode = data => {
+      setLoading(true);
+      fetch('https://api.reskillamericans.org/volunteering/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
+        .then(data => {
+          setLoading(false);
+          setLinkedInAuth(true);
+
+          const { name, email, enrolled } = data.payload;
+
+          setUsername(name);
+          setEmailAddress(email);
+
+          if (enrolled) {
+            setHasEnrolled(true);
+          }
+        })
+        .catch(error => {
+          setLoading(false);
+          console.log(error);
+        });
+    };
+
     // store query param value
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
@@ -41,35 +70,7 @@ const LinkedInAuth = () => {
       };
       sendAuthorisationCode(dataToDb);
     }
-  }, [authCode, queryState]);
-
-  const sendAuthorisationCode = data => {
-    setLoading(true);
-    fetch('https://api.reskillamericans.org/volunteering/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        setLoading(false);
-
-        const { name, email, enrolled } = data.payload;
-
-        setUsername(name);
-        setEmailAddress(email);
-
-        if (enrolled) {
-          setHasEnrolled(true);
-        }
-      })
-      .catch(error => {
-        setLoading(false);
-        console.log(error);
-      });
-  };
+  }, [authCode, queryState, setLinkedInAuth]);
 
   return (
     <Box w="full">
