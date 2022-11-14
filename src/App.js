@@ -5,6 +5,7 @@ import Form from './components/Form';
 import LinkedInAuth from './components/LinkedInAuth';
 import Navbar from './components/Navbar';
 import Title from './components/Title';
+import Agreement from './components/Agreement';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -26,10 +27,7 @@ function App() {
               </>
             }
           />
-          <Route
-            path="/volunteer-agreement"
-            element={<h1>Volunteer form</h1>}
-          />
+          <Route path="/volunteer-agreement" element={<Agreement />} />
         </Routes>
       </Router>
 

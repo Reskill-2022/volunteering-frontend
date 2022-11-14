@@ -370,10 +370,30 @@ const Form = ({ linkedInAuth }) => {
                 {/* QUESTION 8 */}
                 <ListItem>
                   <FormControl isRequired mb={4}>
-                    <FormLabel>Please type your full name.</FormLabel>
+                    <FormLabel>
+                      By typing in my first and last name and date below, I
+                      acknowledge that I have read and agree to the terms and
+                      conditions of this{' '}
+                      <Link
+                        href="/volunteer-agreement"
+                        isExternal
+                        color="blue"
+                        textDecor="underline"
+                        _hover={{ textDecor: 'none' }}
+                      >
+                        Volunteer Agreement
+                      </Link>
+                      . I certify that I am eighteen years of age or older and a
+                      legal resident of the United States. BY SIGNING, I
+                      ACKNOWLEDGE THAT I HAVE READ AND UNDERSTOOD ALL OF THE
+                      TERMS OF THIS AGREEMENT AND THAT I AM VOLUNTARILY GIVING
+                      UP LEGAL RIGHTS, INCLUDING THE RIGHT TO SUE THE
+                      ORGANIZATION.
+                    </FormLabel>
                     <Input
                       type="text"
-                      placeholder="your name"
+                      placeholder="Firstname Lastname MM-DD-YYYY"
+                      _placeholder={{ opacity: 0.5, color: 'gray.600' }}
                       value={volunteerName}
                       onChange={e => setVolunteerName(e.target.value)}
                       border="1px solid"
