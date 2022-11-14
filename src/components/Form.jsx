@@ -22,6 +22,7 @@ import { listOfUsStates } from '../data/us_states';
 import { listOfHelpSubjects } from '../data/help_subjects';
 import { listOfVolunteerMethods } from '../data/volunteer_methods';
 import { listOfMinorityGroups } from '../data/minority_groups';
+// import { Link as RLink } from 'react-router-dom';
 
 const Form = ({ linkedInAuth }) => {
   // question 1 (input type = select)
@@ -34,37 +35,28 @@ const Form = ({ linkedInAuth }) => {
   const [workExperience, setWorkExperience] = useState('');
 
   // question 4 (input type = checkbox)
-  const [helpSubjects, setHelpSubjects] = useState([]);
-  const [otherHelpSubject, setOtherHelpSubject] = useState('');
-
-  // question 5 (input type = checkbox)
   const [volunteerMethods, setVolunteerMethods] = useState([]);
   const [otherVolunteerMethod, setOtherVolunteerMethod] = useState('');
 
-  // question 6 (input type = text)
-  // const [willJoinDirectory, setWillJoinDirectory] = useState(false);
+  // question 5 (input type = checkbox)
+  const [helpSubjects, setHelpSubjects] = useState([]);
+  const [otherHelpSubject, setOtherHelpSubject] = useState('');
 
-  // question 7 (input type = radio)
+  // question 6 (input type = radio)
   const [minorityGroup, setMinorityGroup] = useState('');
   const [otherMinorityGroup, setOtherMinorityGroup] = useState('');
 
-  // question 8 (input type = text)
-  // const [personInfo, setPersonInfo] = useState('');
-
-  // question 9 (input type = radio)
+  // question 7 (input type = radio)
   const [convicted, setConvicted] = useState(false);
 
-  // question 9 (input type = text)
+  // question 8 (input type = text)
   const [volunteerName, setVolunteerName] = useState('');
 
   const [loading, setLoading] = useState(false);
 
   const handleCheckboxSelection = (e, state, setter, otherValue) => {
-    // TODO ensure checkbox selection
-
     const isChecked = e.target.checked;
     const selected = e.target.value;
-    console.log('selected', selected);
 
     const selectedItems = [...state];
 
@@ -104,13 +96,6 @@ const Form = ({ linkedInAuth }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    // addOtherValueToList(otherHelpSubject, helpSubjects, setHelpSubjects);
-    // addOtherValueToList(
-    //   otherVolunteerMethod,
-    //   volunteerMethods,
-    //   setVolunteerMethods
-    // );
-
     const formData = {
       state: residentState,
       organization: org,
@@ -120,30 +105,11 @@ const Form = ({ linkedInAuth }) => {
       representation: minorityGroup,
       convicted: convicted,
       provided_name: volunteerName,
-
-      // will_join_directory: willJoinDirectory,
-      // self_summary: personInfo,
-
-      // volunteer: {
-      //   subject: {
-      //     'selected-subjects': helpSubjects,
-      //     other: otherHelpSubject,
-      //   },
-      //   method: {
-      //     'selected-methods': volunteerMethods,
-      //     other: otherVolunteerMethod,
-      //   },
-      // },
-      // 'volunteer-info': personInfo,
-      // 'minority-group': minorityGroup,
-      // 'volunteer-name': volunteerName,
     };
-
-    console.log('formData', formData);
-    console.log('JSONformData', JSON.stringify(formData));
 
     submitVolunteerData(formData);
   };
+
   return (
     <Box w="full">
       <Flex flexDir="column" maxW={1200} margin="0 auto" padding="24px">
@@ -179,10 +145,7 @@ const Form = ({ linkedInAuth }) => {
               you with the most appropriate group.
             </Text>
 
-            <form
-              onSubmit={handleSubmit}
-              //
-            >
+            <form onSubmit={handleSubmit}>
               <OrderedList>
                 {/* QUESTION 1 */}
                 <ListItem>
@@ -192,7 +155,6 @@ const Form = ({ linkedInAuth }) => {
                       placeholder="--select a state--"
                       onChange={e => setResidentState(e.target.value)}
                     >
-                      {/* <option selected disabled hidden>Choose here</option> */}
                       {listOfUsStates.map(({ name, abbreviation }) => {
                         return (
                           <option value={abbreviation} key={abbreviation}>
@@ -293,51 +255,11 @@ const Form = ({ linkedInAuth }) => {
                 </ListItem>
 
                 {/* QUESTION 5 */}
-                {/* <ListItem>
-                  <FormControl mb={4}>
-                    <Text fontWeight={500}>
-                      In which ways would you be available to volunteer?
-                    </Text>
-                    <FormHelperText color="black" fontStyle="italic">
-                      Select all that apply.
-                    </FormHelperText>
-
-                    <VStack align="flex-start" my={3}>
-                      {listOfVolunteerMethods.map(({ desc, value }) => {
-                        return (
-                          <Checkbox
-                            key={value}
-                            value={desc}
-                            onChange={e =>
-                              handleCheckboxSelection(
-                                e,
-                                volunteerMethods,
-                                setVolunteerMethods,
-                                otherVolunteerMethod
-                              )
-                            }
-                          >
-                            {desc}
-                          </Checkbox>
-                        );
-                      })}
-                    </VStack>
-                    <Input
-                      type="text"
-                      value={otherVolunteerMethod}
-                      onChange={e => setOtherVolunteerMethod(e.target.value)}
-                      border="1px solid"
-                      borderColor="blackAlpha.300"
-                    />
-                  </FormControl>
-                </ListItem> */}
-
-                {/* QUESTION 5 */}
                 <ListItem>
                   <FormControl mb={4}>
                     <Text fontWeight={500}>
                       If you selected mentorship, in what specific areas would
-                      you be able to help with skills?{' '}
+                      you be able to help with skills?
                     </Text>
                     <FormHelperText color="black" fontStyle="italic">
                       Select all that apply.
@@ -375,25 +297,6 @@ const Form = ({ linkedInAuth }) => {
                 </ListItem>
 
                 {/* QUESTION 6 */}
-                {/* <ListItem>
-                  <FormControl isRequired mb={4}>
-                    <FormLabel>
-                      Are you willing to be identified in our volunteer
-                      directory (distributed to participants)?
-                    </FormLabel>
-                    <RadioGroup
-                      onChange={setWillJoinDirectory}
-                      value={willJoinDirectory}
-                    >
-                      <VStack align="flex-start">
-                        <Radio value="true">Yes</Radio>
-                        <Radio value="false">No</Radio>
-                      </VStack>
-                    </RadioGroup>
-                  </FormControl>
-                </ListItem> */}
-
-                {/* QUESTION 7 */}
                 <ListItem>
                   <FormControl mb={4}>
                     <FormLabel>
@@ -432,8 +335,11 @@ const Form = ({ linkedInAuth }) => {
                     </FormHelperText>
                     <FormHelperText color="black" fontStyle="italic">
                       See our{' '}
-                      <Link href="/" isExternal color="red">
-                        {/* // TODO add url */}
+                      <Link
+                        href="https://reskillamericans.org/faq"
+                        isExternal
+                        color="red"
+                      >
                         FAQ
                       </Link>{' '}
                       for our definition of underrepresented minorities.
@@ -441,21 +347,7 @@ const Form = ({ linkedInAuth }) => {
                   </FormControl>
                 </ListItem>
 
-                {/* QUESTION 8 */}
-                {/* <ListItem>
-                  <FormControl isRequired mb={4}>
-                    <FormLabel>Please tell us about yourself</FormLabel>
-                    <Textarea
-                      value={personInfo}
-                      onChange={e => setPersonInfo(e.target.value)}
-                      placeholder="Something about you"
-                      border="1px solid"
-                      borderColor="blackAlpha.300"
-                    />
-                  </FormControl>
-                </ListItem> */}
-
-                {/* QUESTION 3 */}
+                {/* QUESTION 7 */}
                 <ListItem>
                   <FormControl isRequired mb={4}>
                     <FormLabel>
@@ -475,17 +367,10 @@ const Form = ({ linkedInAuth }) => {
                   </FormControl>
                 </ListItem>
 
-                {/* QUESTION 9 */}
+                {/* QUESTION 8 */}
                 <ListItem>
                   <FormControl isRequired mb={4}>
-                    <FormLabel>
-                      Please type your full name here to accept the terms of our{' '}
-                      <Link href="/" isExternal color="red">
-                        {/* // TODO add url */}
-                        Volunteer Participation Agreement
-                      </Link>
-                      .
-                    </FormLabel>
+                    <FormLabel>Please type your full name.</FormLabel>
                     <Input
                       type="text"
                       placeholder="your name"
@@ -497,6 +382,48 @@ const Form = ({ linkedInAuth }) => {
                   </FormControl>
                 </ListItem>
               </OrderedList>
+              {/* (Insert box to check here)  */}
+
+              <FormControl isRequired>
+                <Checkbox
+                  // onChange={e => handleCheckbox(e, setHasNotReadTos)}
+                  borderColor="gray.200"
+                  padding={3}
+                  px={0}
+                >
+                  I certify that the information and statements contained in
+                  this Volunteer Application are true. I also agree that if I am
+                  accepted as a volunteer, I will abide by the terms of the
+                  Reskill Americans{' '}
+                  <Link
+                    href="/volunteer-agreement"
+                    isExternal
+                    color="blue"
+                    textDecor="underline"
+                    _hover={{ textDecor: 'none' }}
+                  >
+                    Volunteer Agreement
+                  </Link>
+                  {/* <RLink to="/policy" color="blue">
+                    Volunteer Agreement
+                  </RLink> */}
+                  .
+                </Checkbox>
+                <Checkbox borderColor="gray.200" padding={3} px={0}>
+                  By submitting this Volunteer Application, I acknowledge that I
+                  have reviewed and agree to Reskill America's{' '}
+                  <Link
+                    href="https://termsofservice.reskillamericans.org/privacy"
+                    isExternal
+                    color="blue"
+                    textDecor="underline"
+                    _hover={{ textDecor: 'none' }}
+                  >
+                    Privacy Policy
+                  </Link>
+                  .
+                </Checkbox>
+              </FormControl>
 
               <Button
                 disabled={!linkedInAuth}
