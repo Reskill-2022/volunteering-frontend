@@ -17,11 +17,13 @@ import {
   RadioGroup,
   Radio,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
 import { listOfUsStates } from '../data/us_states';
 import { listOfHelpSubjects } from '../data/help_subjects';
 import { listOfVolunteerMethods } from '../data/volunteer_methods';
 import { listOfMinorityGroups } from '../data/minority_groups';
+
 // import { Link as RLink } from 'react-router-dom';
 
 const Form = ({ linkedInAuth }) => {
@@ -54,7 +56,9 @@ const Form = ({ linkedInAuth }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleCheckboxSelection = (e, state, setter, otherValue) => {
+  const toast = useToast();
+
+  const handleCheckboxSelection = (e, state, setter) => {
     const isChecked = e.target.checked;
     const selected = e.target.value;
 
@@ -85,8 +89,18 @@ const Form = ({ linkedInAuth }) => {
     })
       .then(response => response.json())
       .then(data => {
-        alert('Sent successfully!');
+        toast({
+          title: 'Sent successfully!',
+          description: 'Thank you for volunteering.',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+          position: 'top',
+        });
         setLoading(false);
+        setTimeout(() => {
+          window.location.href = 'https://reskillamericans.org';
+        }, 3000);
       })
       .catch(error => {
         setLoading(false);
