@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -9,6 +9,10 @@ import {
 } from '@chakra-ui/react';
 
 const Agreement = () => {
+  useEffect(() => {
+    document.title = 'Reskill Americans Volunteer Agreement';
+  }, []);
+
   const OList = ({ list }) => {
     return (
       <OrderedList>
