@@ -390,9 +390,13 @@ const Form = ({ linkedInAuth }) => {
                       UP LEGAL RIGHTS, INCLUDING THE RIGHT TO SUE THE
                       ORGANIZATION.
                     </FormLabel>
+                    <Text color="gray.600" opacity=".5" my={2}>
+                      Firstname Lastname MM-DD-YYYY
+                    </Text>
+
                     <Input
                       type="text"
-                      placeholder="Firstname Lastname MM-DD-YYYY"
+                      placeholder="Enter your full name and date"
                       _placeholder={{ opacity: 0.5, color: 'gray.600' }}
                       value={volunteerName}
                       onChange={e => setVolunteerName(e.target.value)}
@@ -402,15 +406,9 @@ const Form = ({ linkedInAuth }) => {
                   </FormControl>
                 </ListItem>
               </OrderedList>
-              {/* (Insert box to check here)  */}
 
               <FormControl isRequired>
-                <Checkbox
-                  // onChange={e => handleCheckbox(e, setHasNotReadTos)}
-                  borderColor="gray.200"
-                  padding={3}
-                  px={0}
-                >
+                <Checkbox borderColor="gray.200" padding={3} px={0}>
                   I certify that the information and statements contained in
                   this Volunteer Application are true. I also agree that if I am
                   accepted as a volunteer, I will abide by the terms of the
