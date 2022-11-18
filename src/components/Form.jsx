@@ -428,7 +428,7 @@ const Form = ({ linkedInAuth }) => {
                   accepted as a volunteer, I will abide by the terms of the
                   Reskill Americans{' '}
                   <Link
-                    href="/volunteer-agreement"
+                    href="/agreement"
                     isExternal
                     color="blue"
                     textDecor="underline"
@@ -436,9 +436,6 @@ const Form = ({ linkedInAuth }) => {
                   >
                     Volunteer Agreement
                   </Link>
-                  {/* <RLink to="/policy" color="blue">
-                    Volunteer Agreement
-                  </RLink> */}
                   .
                 </Checkbox>
                 <Checkbox borderColor="gray.200" padding={3} px={0}>

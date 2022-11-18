@@ -27,7 +27,7 @@ function App() {
               </>
             }
           />
-          <Route path="/volunteer-agreement" element={<Agreement />} />
+          <Route path="/agreement" element={<Agreement />} />
         </Routes>
       </Router>
 
