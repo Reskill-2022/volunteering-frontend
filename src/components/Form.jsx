@@ -389,7 +389,7 @@ const Form = ({ linkedInAuth }) => {
                       acknowledge that I have read and agree to the terms and
                       conditions of this{' '}
                       <Link
-                        href="/volunteer-agreement"
+                        href="/agreement"
                         isExternal
                         color="blue"
                         textDecor="underline"
