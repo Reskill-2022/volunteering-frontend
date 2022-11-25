@@ -84,9 +84,9 @@ const Navbar = () => {
             },
             { text: 'Partner', url: 'https://reskillamericans.org/partner' },
             { text: 'Donate', url: 'https://reskillamericans.org/donate' },
-            { text: 'About Us', url: 'https://reskillamericans.org/about-us' },
+            { text: 'About Us', url: 'https://reskillamericans.org/about' },
             { text: 'News', url: 'https://reskillamericans.org/news' },
-            { text: 'FAQs', url: 'https://reskillamericans.org/faqs' },
+            { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
           ]}
         />
       </Flex>
@@ -105,10 +105,10 @@ const Navbar = () => {
               { text: 'Donate', url: 'https://reskillamericans.org/donate' },
               {
                 text: 'About Us',
-                url: 'https://reskillamericans.org/about-us',
+                url: 'https://reskillamericans.org/about',
               },
               { text: 'News', url: 'https://reskillamericans.org/news' },
-              { text: 'FAQs', url: 'https://reskillamericans.org/faqs' },
+              { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
             ]}
             mar="8px 0"
             mobile
