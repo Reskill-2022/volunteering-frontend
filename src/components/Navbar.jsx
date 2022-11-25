@@ -44,20 +44,39 @@ const Navbar = () => {
   const NavLinks = ({ links, mar, mobile }) => {
     return (
       <>
-        {links.map(({ text, url }) => {
+        {links.map(({ text, url, active }) => {
           return (
-            <Link href={url} key={url} margin={mar || '0 0.5rem'}>
-              <Button
+            <>
+              <Link
+                href={url}
+                key={url}
+                margin={mar || '0 0.5rem'}
+                textDecor="none"
+                fontSize={mobile ? '2xl' : ''}
+                fontWeight={700}
+                _hover={{
+                  transform: 'scale(1.2)',
+                }}
+                borderBottom={active ? '3px solid' : ''}
+                borderColor={active ? 'red' : ''}
+              >
+                {/* <Button
+                href={url}
+                key={url}
+                margin={mar || '0 0.5rem'}
+                //
                 variant="link"
                 color="black"
                 colorScheme="blue"
+                textDecor="none"
                 w="full"
                 fontSize={mobile ? '2xl' : ''}
                 fontWeight={mobile ? 700 : ''}
-              >
+              > */}
                 {text}
-              </Button>
-            </Link>
+                {/* </Button> */}
+              </Link>
+            </>
           );
         })}
       </>
@@ -85,6 +104,11 @@ const Navbar = () => {
             { text: 'Partner', url: 'https://reskillamericans.org/partner' },
             { text: 'Donate', url: 'https://reskillamericans.org/donate' },
             { text: 'About Us', url: 'https://reskillamericans.org/about' },
+            {
+              text: 'Volunteer',
+              url: 'https://volunteer.reskillamericans.org',
+              active: true,
+            },
             { text: 'News', url: 'https://reskillamericans.org/news' },
             { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
           ]}

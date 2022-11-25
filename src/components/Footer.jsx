@@ -113,6 +113,10 @@ const Footer = () => {
               url: 'https://reskillamericans.org/donate',
             },
             {
+              name: 'Volunteer',
+              url: 'https://volunteer.reskillamericans.org',
+            },
+            {
               name: 'About Us',
               url: 'https://reskillamericans.org/about',
             },
