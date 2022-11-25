@@ -44,7 +44,7 @@ const Footer = () => {
       <SimpleGrid columns={2} spacing={4}>
         {links.map(({ name, url }) => {
           return (
-            <Link href={url} key={url} isExternal mx={1}>
+            <Link href={url} key={url} mx={1}>
               <Text>{name}</Text>
             </Link>
           );
