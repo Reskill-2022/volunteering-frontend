@@ -78,12 +78,15 @@ const Navbar = () => {
       <Flex align="center" display={['none', null, 'flex']}>
         <NavLinks
           links={[
-            { text: 'Learn More', url: '/learn-more' },
-            { text: 'Partner', url: '/partner' },
-            { text: 'Donate', url: '/donate' },
-            { text: 'About Us', url: '/about-us' },
-            { text: 'News', url: '/news' },
-            { text: 'FAQs', url: '/faqs' },
+            {
+              text: 'Learn More',
+              url: 'https://reskillamericans.org/learn-more',
+            },
+            { text: 'Partner', url: 'https://reskillamericans.org/partner' },
+            { text: 'Donate', url: 'https://reskillamericans.org/donate' },
+            { text: 'About Us', url: 'https://reskillamericans.org/about-us' },
+            { text: 'News', url: 'https://reskillamericans.org/news' },
+            { text: 'FAQs', url: 'https://reskillamericans.org/faqs' },
           ]}
         />
       </Flex>
