@@ -113,6 +113,10 @@ const Navbar = () => {
               { text: 'Partner', url: 'https://reskillamericans.org/partner' },
               { text: 'Donate', url: 'https://reskillamericans.org/donate' },
               {
+                text: 'Volunteer',
+                url: 'https://volunteer.reskillamericans.org',
+              },
+              {
                 text: 'About Us',
                 url: 'https://reskillamericans.org/about',
               },
