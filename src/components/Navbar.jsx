@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   Icon,
   Image,
@@ -60,21 +59,7 @@ const Navbar = () => {
                 borderBottom={active ? '3px solid' : ''}
                 borderColor={active ? 'red' : ''}
               >
-                {/* <Button
-                href={url}
-                key={url}
-                margin={mar || '0 0.5rem'}
-                //
-                variant="link"
-                color="black"
-                colorScheme="blue"
-                textDecor="none"
-                w="full"
-                fontSize={mobile ? '2xl' : ''}
-                fontWeight={mobile ? 700 : ''}
-              > */}
                 {text}
-                {/* </Button> */}
               </Link>
             </>
           );
@@ -91,7 +76,7 @@ const Navbar = () => {
       margin="0 auto"
       padding="24px"
     >
-      <Link href="https://reskillamericans.org/" isExternal>
+      <Link href="https://reskillamericans.org/">
         <Image src={logo} alt="" h={30} />
       </Link>
       <Flex align="center" display={['none', null, 'flex']}>
