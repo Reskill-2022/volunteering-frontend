@@ -72,7 +72,7 @@ const Navbar = () => {
     <Flex
       justify="space-between"
       align="center"
-      maxW={1200}
+      maxW={1532}
       margin="0 auto"
       padding="24px"
     >
