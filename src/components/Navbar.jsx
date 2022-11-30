@@ -121,7 +121,7 @@ const Navbar = () => {
                 url: 'https://reskillamericans.org/about',
               },
               { text: 'News', url: 'https://reskillamericans.org/news' },
-              { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
+              { text: 'FAQ', url: 'https://reskillamericans.org/faq' },
             ]}
             mar="8px 0"
             mobile
