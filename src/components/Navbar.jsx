@@ -45,23 +45,21 @@ const Navbar = () => {
       <>
         {links.map(({ text, url, active }) => {
           return (
-            <>
-              <Link
-                href={url}
-                key={url}
-                margin={mar || '0 0.5rem'}
-                textDecor="none"
-                fontSize={mobile ? '2xl' : ''}
-                fontWeight={700}
-                _hover={{
-                  transform: 'scale(1.2)',
-                }}
-                borderBottom={active ? '3px solid' : ''}
-                borderColor={active ? 'red' : ''}
-              >
-                {text}
-              </Link>
-            </>
+            <Link
+              href={url}
+              key={url}
+              margin={mar || '0 0.5rem'}
+              textDecor="none"
+              fontSize={mobile ? '2xl' : ''}
+              fontWeight={700}
+              _hover={{
+                transform: 'scale(1.2)',
+              }}
+              borderBottom={active ? '3px solid' : ''}
+              borderColor={active ? 'red' : ''}
+            >
+              {text}
+            </Link>
           );
         })}
       </>
