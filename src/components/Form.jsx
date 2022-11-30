@@ -91,7 +91,13 @@ const Form = ({ linkedInAuth, emailAddress }) => {
         body: JSON.stringify(data),
       }
     )
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 200) {
+          response.json();
+        } else {
+          throw new Error('Can not submit');
+        }
+      })
       .then(data => {
         toast({
           title: 'Sent successfully!',
@@ -108,6 +114,14 @@ const Form = ({ linkedInAuth, emailAddress }) => {
       })
       .catch(error => {
         setLoading(false);
+        toast({
+          title: 'Failed to send!',
+          description: 'There was a problem with sending your response.',
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+          position: 'top',
+        });
       });
   };
 
