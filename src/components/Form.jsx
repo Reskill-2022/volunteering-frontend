@@ -118,7 +118,7 @@ const Form = ({ linkedInAuth }) => {
       volunteer_means: [...volunteerMethods, otherVolunteerMethod],
       volunteer_areas: [...helpSubjects, otherHelpSubject],
       representation: minorityGroup,
-      convicted: convicted,
+      convicted: convicted === 'true',
       provided_name: volunteerName,
     };
 
