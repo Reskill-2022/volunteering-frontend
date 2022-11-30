@@ -115,6 +115,7 @@ const Navbar = () => {
               {
                 text: 'Volunteer',
                 url: 'https://volunteer.reskillamericans.org',
+                active: true,
               },
               {
                 text: 'About Us',
