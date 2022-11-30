@@ -95,7 +95,7 @@ const Navbar = () => {
             },
             { text: 'About Us', url: 'https://reskillamericans.org/about' },
             { text: 'News', url: 'https://reskillamericans.org/news' },
-            { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
+            { text: 'FAQ', url: 'https://reskillamericans.org/faq' },
           ]}
         />
       </Flex>
