@@ -82,7 +82,7 @@ const Form = ({ linkedInAuth }) => {
   const submitVolunteerData = data => {
     setLoading(true);
     fetch('https://api.reskillamericans.org/volunteering/users/update', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
