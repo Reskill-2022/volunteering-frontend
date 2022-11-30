@@ -88,12 +88,12 @@ const Navbar = () => {
             },
             { text: 'Partner', url: 'https://reskillamericans.org/partner' },
             { text: 'Donate', url: 'https://reskillamericans.org/donate' },
-            { text: 'About Us', url: 'https://reskillamericans.org/about' },
             {
               text: 'Volunteer',
               url: 'https://volunteer.reskillamericans.org',
               active: true,
             },
+            { text: 'About Us', url: 'https://reskillamericans.org/about' },
             { text: 'News', url: 'https://reskillamericans.org/news' },
             { text: 'FAQs', url: 'https://reskillamericans.org/faq' },
           ]}
