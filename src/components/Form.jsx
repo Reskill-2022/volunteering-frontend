@@ -26,7 +26,7 @@ import { listOfMinorityGroups } from '../data/minority_groups';
 
 // import { Link as RLink } from 'react-router-dom';
 
-const Form = ({ linkedInAuth }) => {
+const Form = ({ linkedInAuth, emailAddress }) => {
   // question 1 (input type = select)
   const [residentState, setResidentState] = useState('');
 
@@ -81,13 +81,16 @@ const Form = ({ linkedInAuth }) => {
 
   const submitVolunteerData = data => {
     setLoading(true);
-    fetch('https://api.reskillamericans.org/volunteering/users/email', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://api.reskillamericans.org/volunteering/users/${emailAddress}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then(response => response.json())
       .then(data => {
         toast({

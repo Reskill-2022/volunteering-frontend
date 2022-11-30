@@ -11,11 +11,10 @@ import React, { useEffect, useState } from 'react';
 
 import linkedInSinIn from '../assets/signin-linkedin.png';
 
-const LinkedInAuth = ({ setLinkedInAuth }) => {
+const LinkedInAuth = ({ setLinkedInAuth, emailAddress, setEmailAddress }) => {
   const [authCode, setAuthCode] = useState('');
   const [queryState, setQueryState] = useState('');
   const [username, setUsername] = useState('John Doe');
-  const [emailAddress, setEmailAddress] = useState('example@email.com');
   const [hasEnrolled, setHasEnrolled] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -70,7 +69,7 @@ const LinkedInAuth = ({ setLinkedInAuth }) => {
       };
       sendAuthorisationCode(dataToDb);
     }
-  }, [authCode, queryState, setLinkedInAuth]);
+  }, [authCode, queryState, setLinkedInAuth, setEmailAddress]);
 
   return (
     <Box w="full">
@@ -121,7 +120,6 @@ const LinkedInAuth = ({ setLinkedInAuth }) => {
               <Text>Name: {username} </Text>
               <Text>Email: {emailAddress} </Text>
             </Box>
-            {/* <Text color="red">Sign out</Text> */}
           </Flex>
         </Flex>
       </Flex>

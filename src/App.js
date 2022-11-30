@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [linkedInAuth, setLinkedInAuth] = useState(false);
+  const [emailAddress, setEmailAddress] = useState('example@email.com');
 
   return (
     <Box>
@@ -22,8 +23,12 @@ function App() {
             element={
               <>
                 <Title />
-                <LinkedInAuth setLinkedInAuth={setLinkedInAuth} />
-                <Form linkedInAuth={linkedInAuth} />
+                <LinkedInAuth
+                  setLinkedInAuth={setLinkedInAuth}
+                  setEmailAddress={setEmailAddress}
+                  emailAddress={emailAddress}
+                />
+                <Form linkedInAuth={linkedInAuth} emailAddress={emailAddress} />
               </>
             }
           />
