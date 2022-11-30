@@ -105,36 +105,36 @@ const Footer = () => {
               url: 'https://reskillamericans.org/learn-more',
             },
             {
-              name: 'Partner',
-              url: 'https://reskillamericans.org/partner',
-            },
-            {
-              name: 'Donate',
-              url: 'https://reskillamericans.org/donate',
-            },
-            {
-              name: 'Volunteer',
-              url: 'https://volunteer.reskillamericans.org',
-            },
-            {
-              name: 'About Us',
-              url: 'https://reskillamericans.org/about',
-            },
-            {
               name: 'Contact Us',
               url: 'mailto:info@reskillamericans.org',
             },
             {
-              name: 'News and Blog',
-              url: 'https://reskillamericans.org/news',
+              name: 'Partner',
+              url: 'https://reskillamericans.org/partner',
             },
             {
               name: 'Privacy Policy',
               url: 'https://reskillamericans.org/privacy',
             },
             {
-              name: 'FAQs',
+              name: 'Donate',
+              url: 'https://reskillamericans.org/donate',
+            },
+            {
+              name: 'News and Blog',
+              url: 'https://reskillamericans.org/news',
+            },
+            {
+              name: 'Volunteer',
+              url: 'https://volunteer.reskillamericans.org',
+            },
+            {
+              name: 'FAQ',
               url: 'https://reskillamericans.org/faq',
+            },
+            {
+              name: 'About Us',
+              url: 'https://reskillamericans.org/about',
             },
           ]}
         />
