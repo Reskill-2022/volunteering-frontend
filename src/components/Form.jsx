@@ -158,11 +158,11 @@ const Form = ({ linkedInAuth, emailAddress }) => {
               Mentor a Participant: Share your technical expertise and
               experience to mentor our participants throughout our seven-month
               training program. Time commitment: 1- 2 hours per week for 7
-              months Timeframe: Starting in Fall 2022
+              months. Timeframe: Starting in Fall 2022.
             </Text>
             <Text mb={3}>
               We seek volunteers that have technical expertise in product design
-              and/or full stack web development. Whether ysdsou are an industry
+              and/or full stack web development. Whether you are an industry
               veteran, or someone who has just completed a boot camp yourself,
               we could use your help!
             </Text>
@@ -201,10 +201,10 @@ const Form = ({ linkedInAuth, emailAddress }) => {
                 {/* QUESTION 2 */}
                 <ListItem>
                   <FormControl isRequired mb={5}>
-                    <FormLabel>Organisation:</FormLabel>
+                    <FormLabel>Organization:</FormLabel>
                     <Input
                       type="text"
-                      placeholder="example organisation"
+                      placeholder="example organization"
                       _placeholder={{ opacity: 0.5, color: 'gray.600' }}
                       value={org}
                       onChange={e => setOrg(e.target.value)}
